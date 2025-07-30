@@ -8,6 +8,7 @@ import CardForm from '../components/CardForm'
 
 
 export default function UpdateCar() {
+    const navigate = useNavigate();
     const { id } = useParams()
     const [brand, setBrand] = useState('')
     const [model, setModel] = useState('')
@@ -84,6 +85,7 @@ export default function UpdateCar() {
         setShowSuccess(true);
         setTimeout(() => {
             setShowSuccess(false);
+            navigate('/admin/cars');
         }, 1500);
     };
 

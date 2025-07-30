@@ -157,7 +157,7 @@ export default function UserAccount() {
         .btn-outline-gold {
           color: #f4c04c;
           border: 1px solid #f4c04c;
-          background: transparent;
+          background: #000;
           padding: 10px 24px;
           border-radius: 30px;
           font-weight: 600;

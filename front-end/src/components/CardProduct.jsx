@@ -23,7 +23,7 @@ export default function CardProduct({
         <p className="car-card-sub">{mileage} km</p>
         <h6 className="car-price">Price: Dh{price}/day</h6>
         <div className="d-flex justify-content-between mt-3 gap-2">
-          <NavLink to={`/update-car/${id}`}
+          <NavLink to={`/admin/update-car/${id}`}
             style={{
               backgroundColor: "#000",
               textDecoration: "none",

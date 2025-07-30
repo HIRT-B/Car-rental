@@ -47,9 +47,9 @@ router.post('/login', (req, res) => {
             return res.status(500).json({ message: 'Server error while accessing the database.' });
         }
 
-        if (results.length === 0) {
-            return res.status(401).json({ message: 'Invalid email or password.' });
-        }
+        //if (results.length === 0) {
+            // res.status(401).json({ message: 'Invalid email or password.' });
+       // }
 
         const user = results[0];
 
@@ -58,7 +58,6 @@ router.post('/login', (req, res) => {
             return res.status(401).json({ message: 'Invalid email or password.' });
         }
 
-        // ICI : renvoyer id, pas userId
         res.status(200).json({
             message: 'Login successful',
             id: user.id,

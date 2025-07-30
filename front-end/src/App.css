@@ -12,51 +12,6 @@ body {
 
 /*styling Navbar*/
 
-.contact-btn {
-  color: #F4C04C;
-  border: 3px solid #F4C04C;
-  background-color: transparent;
-  padding: 5px 30px;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  font-size: 16px;
-  width: 150px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  text-decoration: none;
-  margin-left: 200px;
-
-}
-
-
-.sign-btn {
-  color: #F4C04C;
-  border: 3px solid #F4C04C;
-  background-color: transparent;
-  padding: 5px 30px;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 15px;
-  font-size: 16px;
-  width: 150px;
-  cursor: pointer;
-  transition: background-color 0.3s, color 0.3s;
-  text-decoration: none;
-}
-
-.contact-btn:hover {
-  background-color: #F4C04C;
-  color: #000;
-}
-
-.sign-btn:hover {
-  background-color: #F4C04C;
-  color: #000;
-}
-
 .nav-link {
   color: white !important;
   position: relative;
@@ -1668,26 +1623,41 @@ body {
 }
 
 .badge {
+  background-color: transparent;
   padding: 6px 14px;
-  border-radius: 30px;
-  font-weight: bold;
+  border-radius: 20px;
+  font-weight: 600;
   font-size: 0.85rem;
-  text-transform: uppercase;
-  display: inline-block;
-  letter-spacing: 1px;
+  text-transform: capitalize;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
 }
 
+/* ACTIVE */
 .badge.active {
-  background-color: #f4c04c;
-  color: #111;
-  box-shadow: 0 0 10px rgba(244, 192, 76, 0.5);
+  color: #28a745;
+  box-shadow: 0 0 10px rgba(40, 167, 69, 0.8);
 }
 
-.badge.ended {
-  background-color: #000;
-  color: white;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+/* COMPLETED */
+.badge.completed {
+  color: #17c0eb;
+  box-shadow: 0 0 10px rgba(23, 192, 235, 0.8);
 }
+
+/* IN PROCESS */
+.badge.in-process {
+  color: #f4c04c;
+  box-shadow: 0 0 10px rgba(244, 192, 76, 0.9);
+}
+
+/* CANCELLED */
+.badge.canceled {
+  color: #dc3545;
+  box-shadow: 0 0 10px rgba(220, 53, 69, 0.9);
+}
+
 
 /*animation dashboard page*/
 .page-enter {
