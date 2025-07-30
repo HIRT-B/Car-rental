@@ -9,6 +9,11 @@ body {
   padding-top: 150px;
 
 }
+/*conferm reservation*/
+.no-top-margin {
+  margin-top: -10rem !important;
+  padding-top: 13rem !important;
+}
 
 /*styling Navbar*/
 

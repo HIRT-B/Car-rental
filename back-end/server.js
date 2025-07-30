@@ -5,6 +5,7 @@ const authoRoute = require('./routes/Authentication')
 const carsRoute = require('./routes/carsRouter')
 const userRouter = require('./routes/usersRouter')
 const rentalRouter = require('./routes/rentalRouter')
+const contactRoute = require('./routes/contactRouter')
 const PORT = 3000
 
 const app = express();
@@ -16,6 +17,7 @@ app.use('/auth', authoRoute)
 app.use('/car', carsRoute)
 app.use('/user', userRouter)
 app.use('/rental', rentalRouter)
+app.use('/contact', contactRoute);
 
 
 

@@ -8,6 +8,15 @@ export default function UserAccount() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+const [notifications, setNotifications] = useState([]);
+
+useEffect(() => {
+  const notifs = JSON.parse(localStorage.getItem("userNotifs") || "[]");
+  setNotifications(notifs);
+}, []);
+
+
+
   useEffect(() => {
     const storedUser = JSON.parse(localStorage.getItem("user") || "null");
     if (!storedUser?.id) return;
@@ -104,6 +113,29 @@ export default function UserAccount() {
           <p className="text-muted">No statistics available.</p>
         )}
       </div>
+     {notifications.length > 0 && (
+  <div className="alert rounded-4 p-3 mb-4 shadow-sm text-dark bg-warning-subtle border border-warning" style={{marginTop:"3rem"}}>
+    <div className="d-flex justify-content-between align-items-center mb-2">
+      <h5 className="fw-bold mb-0">Notifications</h5>
+      <button
+        className="btn btn-sm btn-outline-dark"
+        onClick={() => {
+          localStorage.removeItem("userNotifs");
+          setNotifications([]);
+        }}
+      >
+        Clear
+      </button>
+    </div>
+    <ul className="mb-0 ps-3">
+      {notifications.map((notif, index) => (
+        <li key={index}>{notif.message}</li>
+      ))}
+    </ul>
+  </div>
+)}
+
+
 
       {/* Styles */}
       <style>{`

@@ -61,7 +61,7 @@ export default function About() {
               <div>Years Experience</div>
             </div>
             <div class="col stat-box">
-              <div class="stat-number">20</div>
+              <div class="stat-number">40+</div>
               <div>Products</div>
             </div>
             <div class="col stat-box">

@@ -11,14 +11,14 @@ export default function ConfermReserve() {
       const parsedUser = JSON.parse(stored);
       if (parsedUser?.fullname) {
         // Respectful title without gender detection
-        setUser(`Mr./Ms. ${parsedUser.fullname}`);
+        setUser(`${parsedUser.fullname}`);
       }
     }
   }, []);
 
   return (
     <div
-      className="min-vh-100 d-flex justify-content-center align-items-center py-5 px-3"
+      className=" d-flex justify-content-center align-items-center py-5 px-3 no-top-margin"
       style={{ backgroundColor: "#e0dbd2" }}
     >
       <motion.div
@@ -61,7 +61,7 @@ export default function ConfermReserve() {
         <p style={{ color: "#777", fontSize: "15px" }}>
           We have received your request. A confirmation email has been sent to you.
         </p>
-
+        <div className="d-flex justify-content-between">
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -81,6 +81,27 @@ export default function ConfermReserve() {
         >
           Book another car
         </motion.button>
+
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="btn mt-4"
+          style={{
+            backgroundColor: "#f4c04c",
+            color: "#000",
+            fontWeight: "600",
+            borderRadius: "25px",
+            padding: "10px 30px",
+            fontSize: "15px",
+            border: "none",
+            boxShadow: "0 4px 12px rgba(0,0,0,0.2)",
+            transition: "all 0.3s ease",
+          }}
+          onClick={() => (window.location.href = "/")}
+        >
+          Return to Home
+        </motion.button>
+        </div>
       </motion.div>
     </div>
   );

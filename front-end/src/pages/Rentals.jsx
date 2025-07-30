@@ -123,8 +123,20 @@ export default function Rentals() {
     setShowCancelModal(false);
   };
 
+  // ✅ Modified cancel to add notification to user localStorage
   const confirmCancel = () => {
     updateRentalStatus(cancelRentalId, "Canceled");
+
+    const rental = rentals.find((r) => r.rental_id === cancelRentalId);
+
+    // ✅ Create a simple notification saved in localStorage
+    const notifs = JSON.parse(localStorage.getItem("userNotifs") || "[]");
+    notifs.push({
+      message: `⚠️ Your reservation for ${rental?.vehicle_brand || "a car"} was cancelled by admin.`,
+      date: new Date().toISOString(),
+    });
+    localStorage.setItem("userNotifs", JSON.stringify(notifs));
+
     closeCancelModal();
   };
 
@@ -175,7 +187,7 @@ export default function Rentals() {
         </div>
       </div>
 
-      {/* Cards row */}
+      {/* Stats Cards */}
       <div className="row mb-5 gx-3">
         <div className="col-md-2">
           <StatusCard title="Active Rentals" count={stats.activeRentals || 0} status="Active" />
@@ -194,6 +206,7 @@ export default function Rentals() {
         </div>
       </div>
 
+      {/* Table */}
       <div className="table-responsive">
         <table className="table table-dark table-hover rounded">
           <thead className="thead-light">
@@ -210,37 +223,14 @@ export default function Rentals() {
           <tbody>
             {filteredRentals.length === 0 ? (
               <tr>
-                <td colSpan="7" className="text-center">
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/2748/2748558.png"
-                    alt="Not found"
-                    width="80"
-                    height="80"
-                    style={{ opacity: 0.6 }}
-                  />
-                  <div className="mt-2">
-                    {searchTerm.trim() !== "" ? (
-                      <>
-                        No customer found matching:{" "}
-                        <span className="text-warning">"{searchTerm}"</span>
-                      </>
-                    ) : (
-                      <>
-                        No customers available for status:{" "}
-                        <span className="text-warning">"{status}"</span>
-                      </>
-                    )}
-                  </div>
-                </td>
+                <td colSpan="7" className="text-center">No rentals found</td>
               </tr>
             ) : (
               filteredRentals.map((rental) => (
                 <tr key={rental.rental_id}>
                   <td>{rental.rental_id}</td>
                   <td>{rental.customer_name}</td>
-                  <td>
-                    {rental.vehicle_brand} {rental.vehicle_model}
-                  </td>
+                  <td>{rental.vehicle_brand} {rental.vehicle_model}</td>
                   <td>{calcDuration(rental.rental_date, rental.return_date)}</td>
                   <td>{rental.amount} Dh</td>
                   <td>
@@ -292,7 +282,7 @@ export default function Rentals() {
         </table>
       </div>
 
-      {/* Delete Confirmation Modal */}
+      {/* Modals */}
       {showDeleteModal && (
         <div className="modal show fade d-block" style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
           <div className="modal-dialog modal-dialog-centered">
@@ -302,31 +292,30 @@ export default function Rentals() {
                 <button type="button" className="btn-close" onClick={closeDeleteModal}></button>
               </div>
               <div className="modal-body">
-                <p>Voulez-vous vraiment supprimer <strong>{deleteRentalName}</strong> ?</p>
+                <p>Are you sure you want to delete <strong>{deleteRentalName}</strong>?</p>
               </div>
               <div className="modal-footer">
-                <button className="btn btn-secondary" onClick={closeDeleteModal}>Annuler</button>
-                <button className="btn btn-danger" onClick={confirmDelete}>Supprimer</button>
+                <button className="btn btn-secondary" onClick={closeDeleteModal}>Cancel</button>
+                <button className="btn btn-danger" onClick={confirmDelete}>Delete</button>
               </div>
             </div>
           </div>
         </div>
       )}
 
-      {/* Cancel Confirmation Modal */}
       {showCancelModal && (
         <div className="modal show fade d-block" style={{ backgroundColor: "rgba(0,0,0,0.5)" }}>
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Confirm Cancellation</h5>
+                <h5 className="modal-title">Cancel Reservation</h5>
                 <button type="button" className="btn-close" onClick={closeCancelModal}></button>
               </div>
               <div className="modal-body">
-                <p>Are you sure you want to cancel the rental for <strong>{cancelRentalName}</strong>?</p>
+                <p>Are you sure you want to cancel the reservation for <strong>{cancelRentalName}</strong>?</p>
               </div>
               <div className="modal-footer">
-                <button className="btn btn-secondary" onClick={closeCancelModal}>No, Keep It</button>
+                <button className="btn btn-secondary" onClick={closeCancelModal}>No</button>
                 <button className="btn btn-warning" onClick={confirmCancel}>Yes, Cancel</button>
               </div>
             </div>

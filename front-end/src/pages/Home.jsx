@@ -87,15 +87,14 @@ export default function Home() {
                         </div>
                     </div>
                 </section>
-
+                {/*section collection */}
                 <section className="container py-5 text-center">
                     <h2 className=" mb-4 section-title">Book from our collection</h2>
                     <p style={{ color: '#ccc' }}>Whether you're heading out for business or leisure, we have the perfect car for you.</p>
 
-                    <div className="row justify-content-center mt-4 g-4">
-
+                    <div className="row justify-content-center mt-4 g-4" >
                         <div className="container mt-5">
-                            <div className="row">
+                            <div className="row" style={{marginTop:"-2rem"}}>
                                 {cars.slice(0, 3).map(car => (
                                     <div className="col-md-4 mb-3" key={car.id}>
                                         <CardProducthome car={car} />
@@ -105,14 +104,14 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                    <NavLink to={"/all-cars"} className="btn-home">See All Cars</NavLink>
+                    <NavLink to={"/all-cars"} className="btn-home" style={{marginTop:"2rem"}}>See All Cars</NavLink>
                 </section>
                 {/*section gallery */}
 
                 <section className="container py-5 text-center">
-                    <h2 className="section-title">Our Gallery</h2>
+                    <h2 className="section-title" style={{marginTop:"-1rem"}}>Our Gallery</h2>
 
-                    <div id="multiImageCarousel" className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false">
+                    <div id="multiImageCarousel" style={{marginTop:"-2rem",marginBottom:"2rem"}} className="carousel slide" data-bs-ride="carousel" data-bs-interval="3000" data-bs-pause="false">
 
                         <div className="carousel-indicators">
                             <button type="button" data-bs-target="#multiImageCarousel" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
